@@ -20,8 +20,12 @@ export default function About({}: Props) {
                 }}
                 viewport={{ once: true }}
                 src="https://images.pexels.com/photos/17572202/pexels-photo-17572202/free-photo-of-a-black-and-white-photo-of-a-man-smiling.jpeg?auto=compress&cs=tinysrgb&w=600"
-
+                className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]"
             />
+
+            <div className="space-y-10 px-10 md:px-10">
+                <h4 className="text-4xl font-semibold">Here is a <span className="underline decoration-[#F7AB0A]/50">little</span> background</h4>
+            </div>
         </div>
     )
 }
