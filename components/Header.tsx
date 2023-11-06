@@ -52,6 +52,7 @@ export default function Header({}: Props) {
                     bgColor="transparent"
                 />
                 <p className="uppercase hidden md:inline-flex text-sm text-gray-400">Get In Touch</p>
+                <h1></h1>
             </motion.div>
         </header>
     )
