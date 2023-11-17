@@ -13,7 +13,7 @@ export const social = {
             name: "url",
             title: "Url",
             description: "url",
-            type: "social"
+            type: "url"
         },
     ],
 }
