@@ -36,10 +36,6 @@ export default function Header({ socials }: Props) {
                         bgColor="transparent"
                     />
                 ))}
-
-                <SocialIcon url="https://youtube.com" fgColor="gray" bgColor="transparent"/>
-                <SocialIcon url="https://youtube.com" fgColor="gray" bgColor="transparent"/>
-                <SocialIcon url="https://youtube.com" fgColor="gray" bgColor="transparent"/>
             </motion.div>
 
             <Link href='#contact'>
@@ -66,7 +62,6 @@ export default function Header({ socials }: Props) {
                         bgColor="transparent"
                     />
                     <p className="uppercase hidden md:inline-flex text-sm text-gray-400">Get In Touch</p>
-                    <h1></h1>
                 </motion.div>
             </Link>
         </header>
