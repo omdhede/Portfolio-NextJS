@@ -9,7 +9,7 @@ type Props = {
 
 export default function ExperienceCard({ experience }: Props) {
   return (
-    <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden">
+    <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[800px] snap-center bg-[#292929] p-10 hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden">
       <motion.img
         initial={{
           y: -100,
@@ -42,7 +42,7 @@ export default function ExperienceCard({ experience }: Props) {
             : new Date(experience.dateEnded).toDateString()}
         </p>
 
-        <ul className="list-disc space-y-4 ml-5 text-lg h-80 overflow-y-scroll scrollbar-thin scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#F7AB0A]/80">
+        <ul className="list-disc space-y-4 ml-5 text-lg h-96 pr-5 overflow-y-scroll scrollbar-thin scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#F7AB0A]/80">
             {experience.points.map((point, i) => (
                 <li key={i}>{point}</li>
                 

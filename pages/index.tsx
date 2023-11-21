@@ -31,7 +31,7 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#F7AB0A]/80 z-0">
       <Head>
-        <title>Om's Portfolio</title>
+        <title>{pageInfo?.name} - Portfolio</title>
       </Head>
 
       {/*Header*/}
@@ -54,12 +54,12 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 
       {/*Skills*/}
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills}/>
       </section>
 
       {/*Projects*/}
       <section id="projects" className="snap-center">
-        <Projects />
+        <Projects projects={projects}/>
       </section>
 
       {/*Contact Me*/}
