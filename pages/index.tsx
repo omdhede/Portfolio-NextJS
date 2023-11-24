@@ -6,6 +6,7 @@ import WorkExperience from "@/components/WorkExperience";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import ContactMe from "@/components/ContactMe";
+import ThemeSwitch from "@/components/ThemeSwitch";
 import Link from "next/link";
 import { GetStaticProps } from "next";
 import { PageInfo, Experience, Project, Skill, Social } from "@/typings";
@@ -15,6 +16,8 @@ import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSocials } from "@/utils/fetchSocials";
 import { urlFor } from "@/sanity";
+
+
 
 type Props = {
   pageInfo: PageInfo;
@@ -26,7 +29,7 @@ type Props = {
 
 const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
   return (
-    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#F7AB0A]/80 z-0">
+    <div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0">
       <Head>
         <title>{pageInfo?.name} - Portfolio</title>
       </Head>
@@ -61,27 +64,31 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 
       {/*Contact Me*/}
       <section id="contact" className="snap-start">
-        <ContactMe />
+        <ContactMe pageInfo={pageInfo}/>
       </section>
 
-      <Link href="#hero">
-        <footer className="sticky bottom-5 w-full cursor-pointer">
-          <div className="flex items-center justify-center">
-            <img
-              className="h-10 w-10 rounded-full fiter grayscale hover:grayscale-0 cursor-pointer"
-              src={urlFor(pageInfo?.heroImage).url()}
-              alt=""
-            />
-          </div>
-        </footer>
-      </Link>
+        <section>
+            <ThemeSwitch />
+        </section>
+
+      {/*<Link href="#hero">*/}
+      {/*  <footer className="sticky bottom-5 w-full cursor-pointer">*/}
+      {/*    <div className="flex items-center justify-center">*/}
+      {/*      <img*/}
+      {/*        className="h-10 w-10 rounded-full fiter grayscale hover:grayscale-0 cursor-pointer"*/}
+      {/*        src={urlFor(pageInfo?.heroImage).url()}*/}
+      {/*        alt=""*/}
+      {/*      />*/}
+      {/*    </div>*/}
+      {/*  </footer>*/}
+      {/*</Link>*/}
     </div>
   );
 };
 
 export default Home;
 
-  const getStaticProps: GetStaticProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const experiences: Experience[] = await fetchExperiences();
   const skills: Skill[] = await fetchSkills();

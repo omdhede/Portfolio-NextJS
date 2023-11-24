@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Experience } from "@/typings";
 import { urlFor } from "@/sanity";
 
+
 type Props = {
   experience: Experience;
 };
@@ -32,6 +33,7 @@ export default function ExperienceCard({ experience }: Props) {
               key={technology._id}
               className="h-10 w-10 rounded-full"
               src={urlFor(technology.image).url()}
+             alt=""
             />
           ))}
         </div>
