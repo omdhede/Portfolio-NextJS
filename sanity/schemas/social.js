@@ -1,4 +1,4 @@
-export const social = {
+export default {
     name: 'social',
     title: 'Social',
     type: 'document',

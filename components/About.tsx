@@ -7,7 +7,7 @@ type Props = {
   pageInfo: PageInfo;
 };
 
-export default function About({pageInfo}: Props) {
+export default function About({ pageInfo }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0 }}

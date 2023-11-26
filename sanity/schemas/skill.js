@@ -1,4 +1,4 @@
-export const skill = {
+export default {
     name: 'skill',
     title: 'Skill',
     type: 'document',

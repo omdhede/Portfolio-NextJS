@@ -1,3 +1,6 @@
+"use client"
+
+import React from "react";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -7,7 +10,6 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import ContactMe from "@/components/ContactMe";
 import ThemeSwitch from "@/components/ThemeSwitch";
-import Link from "next/link";
 import { GetStaticProps } from "next";
 import { PageInfo, Experience, Project, Skill, Social } from "@/typings";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
@@ -15,7 +17,7 @@ import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSocials } from "@/utils/fetchSocials";
-import { urlFor } from "@/sanity";
+import pageInfo from "@/sanity/schemas/pageInfo";
 
 
 
@@ -29,7 +31,8 @@ type Props = {
 
 const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
   return (
-    <div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0">
+    <div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0"
+    >
       <Head>
         <title>{pageInfo?.name} - Portfolio</title>
       </Head>
@@ -75,7 +78,7 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
       {/*  <footer className="sticky bottom-5 w-full cursor-pointer">*/}
       {/*    <div className="flex items-center justify-center">*/}
       {/*      <img*/}
-      {/*        className="h-10 w-10 rounded-full fiter grayscale hover:grayscale-0 cursor-pointer"*/}
+      {/*        className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"*/}
       {/*        src={urlFor(pageInfo?.heroImage).url()}*/}
       {/*        alt=""*/}
       {/*      />*/}
@@ -89,20 +92,16 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const pageInfo: PageInfo = await fetchPageInfo();
-  const experiences: Experience[] = await fetchExperiences();
-  const skills: Skill[] = await fetchSkills();
-  const projects: Project[] = await fetchProjects();
-  const socials: Social[] = await fetchSocials();
+    const pageInfo: PageInfo = await fetchPageInfo();
+    const experiences: Experience[] = await fetchExperiences();
+    const skills: Skill[] = await fetchSkills();
+    const projects: Project[] = await fetchProjects();
+    const socials: Social[] = await fetchSocials();
 
-  return {
-    props: {
-      pageInfo,
-      experiences,
-      skills,
-      projects,
-      socials,
-    },
-    revalidate: 10,
-  };
-};
+    return {
+      props: {
+        pageInfo, experiences, skills, projects, socials,
+      },
+      revalidate: 10,
+    }
+}

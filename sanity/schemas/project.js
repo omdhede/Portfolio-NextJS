@@ -1,4 +1,4 @@
-export const project = {
+export default {
     name: 'project',
     title: 'Project',
     type: 'document',

@@ -1,4 +1,4 @@
-export const pageInfo = {
+export default {
     name: 'pageInfo',
     title: 'PageInfo',
     type: 'document',
