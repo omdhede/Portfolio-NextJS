@@ -1,12 +1,23 @@
-import {PageInfo} from "@/typings";
+import { PageInfo } from "@/typings";
 
-export const fetchPageInfo = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`);
+export const fetchPageInfo = async (): Promise<PageInfo> => {
+	try {
+		const res = await fetch(
+			`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`
+		);
+		if (!res.ok) {
+			throw new Error(`Fetch failed with status: ${res.status}`);
+		}
+		const data = await res.json();
+		const pageInfo: PageInfo = data.pageInfo;
 
-    const data = await res.json();
-    const pageInfo: PageInfo = data.pageInfo;
+		console.log("fetching", pageInfo);
 
-    // console.log("fetching", pageInfo);
-
-    return pageInfo;
-}
+		return pageInfo;
+	} catch (err) {
+		console.error(err);
+        // console.log(`${err.stack}`);
+        // console.log(err.stack);
+		throw err;
+	}
+};
