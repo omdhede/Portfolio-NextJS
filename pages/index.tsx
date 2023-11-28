@@ -17,7 +17,7 @@ import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSocials } from "@/utils/fetchSocials";
-import pageInfo from "@/sanity/schemas/pageInfo";
+// import pageInfo from "@/sanity/schemas/pageInfo";
 
 
 
@@ -34,7 +34,7 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 		<div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0">
 			<Head>
 				<title>
-					{Array.isArray(pageInfo?.name)? pageInfo?.name.join(" "): pageInfo?.name}{" "} - Portfolio
+					Portfolio
 				</title>
 			</Head>
 
@@ -91,21 +91,6 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 };
 
 export default Home;
-
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//     const pageInfo: PageInfo = await fetchPageInfo();
-//     const experiences: Experience[] = await fetchExperiences();
-//     const skills: Skill[] = await fetchSkills();
-//     const projects: Project[] = await fetchProjects();
-//     const socials: Social[] = await fetchSocials();
-
-//     return {
-//       props: {
-//         pageInfo, experiences, skills, projects, socials,
-//       },
-//       revalidate: 10,
-//     }
-// }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
 	try {
