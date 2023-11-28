@@ -2,14 +2,10 @@ import { Social } from "@/typings";
 
 export const fetchSocials = async () => {
 	try {
-		let res = await fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`
-		);
+		let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getSocials`);
 
 		if (!res.ok) {
-			res = await fetch(
-				`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getExperiences`
-			);
+			res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getSocials`);
 
 			if (!res.ok) {
 				throw new Error(`HTTP error! status: ${res.status}`);
