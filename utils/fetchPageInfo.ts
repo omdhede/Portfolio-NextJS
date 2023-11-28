@@ -1,12 +1,38 @@
-import {PageInfo} from "@/typings";
+import { PageInfo } from "@/typings";
 
-export const fetchPageInfo = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`);
+export const fetchPageInfo = async (): Promise<PageInfo> => {
+	let res;
+	try {
+		res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`);
+	} catch (error) {
+		console.error(
+			"An error occurred while fetching the page info from BASE_URL:",
+			error
+		);
+	}
 
-    const data = await res.json();
-    const pageInfo: PageInfo = data.pageInfo;
+	if (!res || !res.ok) {
+		try {
+			res = await fetch(
+				`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getPageInfo`
+			);
+		} catch (error) {
+			console.error(
+				"An error occurred while fetching the page info from DEPLOY_URL:",
+				error
+			);
+			throw error;
+		}
+	}
 
-    // console.log("fetching", pageInfo);
+	if (!res.ok) {
+		throw new Error(`HTTP error! status: ${res.status}`);
+	}
 
-    return pageInfo;
-}
+	const data = await res.json();
+	const pageInfo: PageInfo = data.pageInfo;
+
+	console.log("fetching", pageInfo);
+
+	return pageInfo;
+};

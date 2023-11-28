@@ -1,11 +1,36 @@
-import {Experience} from "@/typings";
-export const fetchExperiences = async() => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`);
+import { Experience } from "@/typings";
 
-    const data = await res.json();
-    const experiences: Experience[] = data.experiences;
+export const fetchExperiences = async () => {
+	let res;
+	try {
+		res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`);
+	} catch (error) {
+		console.error(
+			"An error occurred while fetching the experiences from BASE_URL:",
+			error
+		);
+	}
 
-    // console.log("fetching", experiences);
+	if (!res || !res.ok) {
+		try {
+			res = await fetch(
+				`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getExperiences`
+			);
+		} catch (error) {
+			console.error(
+				"An error occurred while fetching the experiences from DEPLOY_URL:",
+				error
+			);
+			return [];
+		}
+	}
 
-    return experiences;
-}
+	if (!res.ok) {
+		throw new Error(`HTTP error! status: ${res.status}`);
+	}
+
+	const data = await res.json();
+	const experiences: Experience[] = data.experiences;
+
+	return experiences;
+};

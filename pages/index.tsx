@@ -17,7 +17,7 @@ import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchSkills } from "@/utils/fetchSkills";
 import { fetchProjects } from "@/utils/fetchProjects";
 import { fetchSocials } from "@/utils/fetchSocials";
-import pageInfo from "@/sanity/schemas/pageInfo";
+// import pageInfo from "@/sanity/schemas/pageInfo";
 
 
 
@@ -31,90 +31,89 @@ type Props = {
 
 const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
   return (
-    <div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0"
-    >
-      <Head>
-        <title>
-           - Portfolio
-        </title>
-      </Head>
+		<div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0">
+			<Head>
+				<title>
+					Portfolio
+				</title>
+			</Head>
 
-      {/*Header*/}
-      <Header socials={socials} />
+			{/*Header*/}
+			<Header socials={socials} />
 
-      {/*Hero*/}
-      <section id="hero" className="snap-start">
-        <Hero pageInfo={pageInfo} />
-      </section>
+			{/*Hero*/}
+			<section id="hero" className="snap-start">
+				<Hero pageInfo={pageInfo} />
+			</section>
 
-      {/*About*/}
-      <section id="about" className="snap-center">
-        <About pageInfo={pageInfo} />
-      </section>
+			{/*About*/}
+			<section id="about" className="snap-center">
+				<About pageInfo={pageInfo} />
+			</section>
 
-      {/*Experience*/}
-      <section id="experience" className="snap-center">
-        <WorkExperience experiences={experiences} />
-      </section>
+			{/*Experience*/}
+			<section id="experience" className="snap-center">
+				<WorkExperience experiences={experiences} />
+			</section>
 
-      {/*Skills*/}
-      <section id="skills" className="snap-start">
-        <Skills skills={skills}/>
-      </section>
+			{/*Skills*/}
+			<section id="skills" className="snap-start">
+				<Skills skills={skills} />
+			</section>
 
-      {/*Projects*/}
-      <section id="projects" className="snap-center">
-        <Projects projects={projects}/>
-      </section>
+			{/*Projects*/}
+			<section id="projects" className="snap-center">
+				<Projects projects={projects} />
+			</section>
 
-      {/*Contact Me*/}
-      <section id="contact" className="snap-start">
-        <ContactMe pageInfo={pageInfo}/>
-      </section>
+			{/*Contact Me*/}
+			<section id="contact" className="snap-start">
+				<ContactMe pageInfo={pageInfo} />
+			</section>
 
-        <section>
-            <ThemeSwitch />
-        </section>
+			<section>
+				<ThemeSwitch />
+			</section>
 
-      {/*<Link href="#hero">*/}
-      {/*  <footer className="sticky bottom-5 w-full cursor-pointer">*/}
-      {/*    <div className="flex items-center justify-center">*/}
-      {/*      <img*/}
-      {/*        className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"*/}
-      {/*        src={urlFor(pageInfo?.heroImage).url()}*/}
-      {/*        alt=""*/}
-      {/*      />*/}
-      {/*    </div>*/}
-      {/*  </footer>*/}
-      {/*</Link>*/}
-    </div>
-  );
+			{/*<Link href="#hero">*/}
+			{/*  <footer className="sticky bottom-5 w-full cursor-pointer">*/}
+			{/*    <div className="flex items-center justify-center">*/}
+			{/*      <img*/}
+			{/*        className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"*/}
+			{/*        src={urlFor(pageInfo?.heroImage).url()}*/}
+			{/*        alt=""*/}
+			{/*      />*/}
+			{/*    </div>*/}
+			{/*  </footer>*/}
+			{/*</Link>*/}
+		</div>
+	);
 };
 
 export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  try {
-    const pageInfo: PageInfo = await fetchPageInfo();
-    const experiences: Experience[] = await fetchExperiences();
-    const skills: Skill[] = await fetchSkills();
-    const projects: Project[] = await fetchProjects();
-    const socials: Social[] = await fetchSocials();
+	try {
+		const pageInfo: PageInfo = await fetchPageInfo();
+		const experiences: Experience[] = await fetchExperiences();
+		const skills: Skill[] = await fetchSkills();
+		const projects: Project[] = await fetchProjects();
+		const socials: Social[] = await fetchSocials();
 
-    return {
-      props: {
-        pageInfo,
-        experiences,
-        skills,
-        projects,
-        socials,
-      },
-      revalidate: 60,
-    };
-  } catch (err) {
-    console.error(err);
-    return {
-      notFound: true,
-    };
-  }
+		return {
+			props: {
+				pageInfo,
+				experiences,
+				skills,
+				projects,
+				socials,
+			},
+			revalidate: 60,
+		};
+	} catch (err) {
+		console.error(err);
+		return {
+			notFound: true,
+		};
+	}
 };
