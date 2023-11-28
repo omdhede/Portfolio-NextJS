@@ -2,14 +2,10 @@ import { Skill } from "@/typings";
 
 export const fetchSkills = async () => {
 	try {
-		let res = await fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`
-		);
+		let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getSkills`);
 
 		if (!res.ok) {
-			res = await fetch(
-				`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getExperiences`
-			);
+			res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getSkills`);
 
 			if (!res.ok) {
 				throw new Error(`HTTP error! status: ${res.status}`);

@@ -3,13 +3,11 @@ import { PageInfo } from "@/typings";
 export const fetchPageInfo = async (): Promise<PageInfo> => {
 	try {
 		let res = await fetch(
-			`${process.env.NEXT_PUBLIC_BASE_URL}/api/getExperiences`
+			`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPageInfo`
 		);
 
 		if (!res.ok) {
-			res = await fetch(
-				`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getExperiences`
-			);
+			res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/getPageInfo`);
 
 			if (!res.ok) {
 				throw new Error(`HTTP error! status: ${res.status}`);
