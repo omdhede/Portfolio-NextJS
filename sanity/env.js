@@ -1,6 +1,5 @@
-export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-11-21'
+export const apiVersion = '2023-11-28'
 
-export const dataset = "production";
-export const projectId = "41cl0mts";
+export const dataset = "lskhcty1";
+export const projectId = "production";
 export const useCdn = false
