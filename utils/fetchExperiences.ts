@@ -13,8 +13,6 @@ export const fetchExperiences = async () => {
 		const data = await res.json();
 		const experiences: Experience[] = data.experiences;
 
-		// console.log("fetching", experiences);
-
 		return experiences;
 	} catch (error) {
 		console.error("An error occurred while fetching the experiences:", error);

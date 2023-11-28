@@ -16,8 +16,6 @@ export const fetchPageInfo = async (): Promise<PageInfo> => {
 		return pageInfo;
 	} catch (err) {
 		console.error(err);
-        // console.log(`${err.stack}`);
-        // console.log(err.stack);
 		throw err;
 	}
 };

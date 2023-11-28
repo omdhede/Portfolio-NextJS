@@ -13,8 +13,6 @@ export const fetchSkills = async () => {
 		const data = await res.json();
 		const skills: Skill[] = data.skills;
 
-		// console.log("fetching", skills);
-
 		return skills;
 	} catch (error) {
 		console.error("An error occurred while fetching the skills:", error);

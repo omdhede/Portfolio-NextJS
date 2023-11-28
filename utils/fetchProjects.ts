@@ -13,8 +13,6 @@ export const fetchProjects = async () => {
 		const data = await res.json();
 		const projects: Project[] = data.projects;
 
-		// console.log("fetching", projects);
-
 		return projects;
 	} catch (error) {
 		console.error("An error occurred while fetching the projects:", error);
