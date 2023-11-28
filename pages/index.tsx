@@ -34,7 +34,9 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
     <div className="dark:bg-gradient-to-tr dark:from-[#41565F] dark:to-[#000000] bg-gradient-to-bl from-[#9FFFFF] to-[#FFFFFF] dark:text-white text-black h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-[rgb(36,36,36)] scrollbar-thumb-[#41565F]/80 z-0"
     >
       <Head>
-        <title>{pageInfo?.name} - Portfolio</title>
+        <title>
+           - Portfolio
+        </title>
       </Head>
 
       {/*Header*/}
@@ -92,6 +94,7 @@ const Home = ({ pageInfo, experiences, socials, skills, projects }: Props) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+  try {
     const pageInfo: PageInfo = await fetchPageInfo();
     const experiences: Experience[] = await fetchExperiences();
     const skills: Skill[] = await fetchSkills();
@@ -100,8 +103,18 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
     return {
       props: {
-        pageInfo, experiences, skills, projects, socials,
+        pageInfo,
+        experiences,
+        skills,
+        projects,
+        socials,
       },
-      revalidate: 10,
-    }
-}
+      revalidate: 60,
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+    };
+  }
+};

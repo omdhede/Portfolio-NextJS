@@ -5,15 +5,15 @@ import social from "./schemas/social";
 import project from "./schemas/project";
 
 // import {createSchema} from "sanity";
-// import {schemaTypes} from "@sanity"
+// import {schemaTypes} from "sanity"
 
 export const schema = ({
-    name: "default",
-    types: [
-        pageInfo,
-        social,
-        skill,
-        experience,
-        project,
-    ],
+  name: "default",
+  types: [
+    pageInfo,
+    social,
+    skill,
+    experience,
+    project,
+  ],
 });
